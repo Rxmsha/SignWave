@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\Users\\rimsh\\Downloads\\asl-signs\")",
+      "Bash(dir \"C:\\Users\\rimsh\\Downloads\\Google-Isolated-Sign-Language-Recognition-Kaggle-main\")",
+      "Bash(cat:*)",
+      "Bash(dir \"C:\\Users\\rimsh\\Downloads\\Google-Isolated-Sign-Language-Recognition-Kaggle-main\\vizualisation_scripts\")",
+      "Bash(mkdir:*)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(curl:*)",
+      "Bash(taskkill:*)",
+      "Bash(npm install:*)",
+      "Bash(dir:*)",
+      "PowerShell($f=\"C:\\\\Users\\\\rimsh\\\\Desktop\\\\SignWave\\\\frontend\"; \"next bin exists: \" + \\(Test-Path \"$f\\\\node_modules\\\\.bin\\\\next.cmd\"\\); \"package count: \" + \\(@\\(Get-ChildItem \"$f\\\\node_modules\" -ErrorAction SilentlyContinue\\).Count\\))",
+      "Bash(find app/api -type f)",
+      "Bash(find app *)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
