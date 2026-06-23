@@ -16,9 +16,9 @@ export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 
 // Get the user's information by id
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const { id } = params;
+        const { id } = await params;
 
         const usersRef = collection(db, 'users');
         let q = query(usersRef, where('id', '==', id));

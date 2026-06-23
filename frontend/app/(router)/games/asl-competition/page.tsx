@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -47,7 +47,7 @@ function generateProblem(): Problem {
     }
 }
 
-export default function ASLCompetitionPage() {
+function ASLCompetitionPageInner() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const roomCode = searchParams.get('room') || '';
@@ -793,6 +793,15 @@ export default function ASLCompetitionPage() {
                 </DialogContent>
             </Dialog>
         </div>
+    );
+}
+
+// Wrap the page in a Suspense boundary because it reads URL search params.
+export default function ASLCompetitionPage() {
+    return (
+        <Suspense fallback={null}>
+            <ASLCompetitionPageInner />
+        </Suspense>
     );
 }
 

@@ -16,7 +16,12 @@
       "Bash(find app/api -type f)",
       "Bash(find app *)",
       "Bash(ls -lh api/pretrained/)",
-      "Bash(du -sh reference_signs)"
+      "Bash(du -sh reference_signs)",
+      "PowerShell(Set-Location C:\\\\Users\\\\rimsh\\\\Desktop\\\\SignWave\\\\frontend; $env:NEXT_TELEMETRY_DISABLED=1; npm run build 2>&1 | Select-Object -Last 40)",
+      "PowerShell(Set-Location C:\\\\Users\\\\rimsh\\\\Desktop\\\\SignWave\\\\frontend; $env:NEXT_TELEMETRY_DISABLED=1; npm run build 2>&1 | Select-Object -Last 35)",
+      "PowerShell(Set-Location C:\\\\Users\\\\rimsh\\\\Desktop\\\\SignWave\\\\frontend; $env:NEXT_TELEMETRY_DISABLED=1; npm run build 2>&1 | Select-Object -Last 30)",
+      "PowerShell(Set-Location C:\\\\Users\\\\rimsh\\\\Desktop\\\\SignWave\\\\frontend; $env:NEXT_TELEMETRY_DISABLED=1; npm run build 2>&1 | Select-String -Pattern \"Compiled|Failed|error|Error|⨯|Generating|Suspense|Route|First Load|✓|prerender\" | Select-Object -Last 30)",
+      "PowerShell(Set-Location C:\\\\Users\\\\rimsh\\\\Desktop\\\\SignWave\\\\frontend; $env:NEXT_TELEMETRY_DISABLED=1; npm run build 2>&1 | Select-String -Pattern \"Compiled successfully|Failed|⨯|Suspense|prerender|Export encountered|Generating static|Finalizing|Route \\\\\\(app\\\\\\)|✓ \" | Select-Object -Last 20)"
     ],
     "deny": [],
     "ask": []
