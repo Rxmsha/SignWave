@@ -705,24 +705,25 @@ def track_video_sequence(request):
 
 @api_view(['GET'])
 def get_available_signs(request):
+    signs = list(idx_to_sign.values())
     return Response({
-        'model_loaded': asl_model.model is not None,
-        'num_signs': asl_model.num_actions,
-        'signs': asl_model.actions,
+        'model_loaded': islr_model is not None,
+        'num_signs': len(signs),
+        'signs': signs,
     })
 
 
 @api_view(['GET'])
 def check_model_status(request):
     """
-    Check if model is loaded properly
+    Check if the word-recognition (ISLR) and alphabet (SigLIP) models loaded.
     """
     return Response({
-        'model_loaded': asl_model.model is not None,
-        'model_path': asl_model.model_path,
-        'actions': asl_model.actions,
-        'input_shape': str(asl_model.model.input_shape) if asl_model.model else None,
-        'output_shape': str(asl_model.model.output_shape) if asl_model.model else None
+        'islr_model_loaded': islr_model is not None,
+        'siglip_model_loaded': bool(SIGLIP_AVAILABLE and siglip_model is not None),
+        'num_signs': len(idx_to_sign),
+        'sequence_length': SEQ_LEN,
+        'threshold': THRESH_HOLD,
     })
 
 
