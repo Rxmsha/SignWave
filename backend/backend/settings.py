@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_kmqx+jd@^&2&=m9jj2yhe8a2g4*8fhwvot+51$hplg=+7sb1+'
+# Override in production by setting the SECRET_KEY env var.
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-_kmqx+jd@^&2&=m9jj2yhe8a2g4*8fhwvot+51$hplg=+7sb1+',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Set DEBUG=False in the deployed environment.
+DEBUG = os.environ.get('DEBUG', 'True').lower() != 'false'
 
-ALLOWED_HOSTS = []
+# Comma-separated list of hosts, e.g. "myspace.hf.space". Defaults to local dev.
+# Set ALLOWED_HOSTS="*" on a demo host to accept any host header.
+ALLOWED_HOSTS = [
+    h.strip() for h in os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') if h.strip()
+]
 
 
 # Application definition
@@ -132,4 +142,16 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
-CORS_ALLOW_CREDENTIALS = True
+# Add the deployed frontend (e.g. https://sign-wave.vercel.app) via env var.
+FRONTEND_URL = os.environ.get('FRONTEND_URL')
+if FRONTEND_URL:
+    CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
+    CSRF_TRUSTED_ORIGINS = [FRONTEND_URL]
+
+# For a quick public demo you can allow any origin instead of listing them:
+# set CORS_ALLOW_ALL=True in the backend env.
+CORS_ALLOW_ALL_ORIGINS = os.environ.get('CORS_ALLOW_ALL', 'False').lower() == 'true'
+
+# Accounts are disabled in this build, so cross-origin requests don't send
+# cookies. Credentials must be off when CORS_ALLOW_ALL_ORIGINS is on.
+CORS_ALLOW_CREDENTIALS = not CORS_ALLOW_ALL_ORIGINS

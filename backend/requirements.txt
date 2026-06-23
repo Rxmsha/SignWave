@@ -14,3 +14,5 @@ tensorflow==2.18.0
 protobuf>=4.25.3,<5
 gradio
 transformers
+# Production WSGI server for deployment (Hugging Face Spaces / Render / etc.)
+gunicorn

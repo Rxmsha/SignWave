@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { apiUrl, API_BASE } from '@/lib/api';
 
 type Prediction = {
     letter: string;
@@ -66,7 +67,7 @@ export default function TestModelPage() {
         const checkBackend = async () => {
             setBackendStatus('checking');
             try {
-                const response = await fetch('http://localhost:8000/api/model-status/', {
+                const response = await fetch(apiUrl('/api/model-status/'), {
                     method: 'GET',
                 });
                 if (response.ok) {
@@ -103,7 +104,7 @@ export default function TestModelPage() {
             setIsLoading(true);
             setError(null);
 
-            const response = await fetch('http://localhost:8000/api/test-siglip/', {
+            const response = await fetch(apiUrl('/api/test-siglip/'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -248,7 +249,7 @@ export default function TestModelPage() {
                         <Button
                             onClick={async () => {
                                 try {
-                                    await fetch('http://localhost:8000/api/test-siglip/', {
+                                    await fetch(apiUrl('/api/test-siglip/'), {
                                         method: 'POST',
                                         headers: { 'Content-Type': 'application/json' },
                                         body: JSON.stringify({ reset_buffer: true }),
@@ -279,7 +280,7 @@ export default function TestModelPage() {
                             <div className="mb-4 p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/40">
                                 <p className="text-sm text-yellow-700 dark:text-yellow-400 font-medium">⚠️ Backend Offline</p>
                                 <p className="text-sm text-yellow-700 dark:text-yellow-400">
-                                    Make sure the Django backend is running on http://localhost:8000
+                                    Make sure the Django backend is running on {API_BASE}
                                 </p>
                             </div>
                         )}

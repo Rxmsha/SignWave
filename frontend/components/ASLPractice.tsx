@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { ASLVisualization } from './ASLVisualization';
+import { apiUrl } from '@/lib/api';
 
 const ASL_LETTERS = ['A', 'B', 'C', 'I', 'L', 'V', 'Y'];
 
@@ -25,7 +26,7 @@ export default function ASLPractice() {
       const base64Image = event.target?.result as string;
       
       try {
-        const response = await fetch('http://localhost:8000/api/track-hands/', {
+        const response = await fetch(apiUrl('/api/track-hands/'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -194,7 +194,7 @@ export default function ASLNumbersGame() {
         const imageData = canvas.toDataURL('image/jpeg', 0.8);
 
         try {
-            const response = await fetch('http://localhost:8000/api/track-numbers/', {
+            const response = await fetch(apiUrl('/api/track-numbers/'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

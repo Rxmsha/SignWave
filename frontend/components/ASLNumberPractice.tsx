@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { ASLVisualization } from './ASLVisualization';
+import { apiUrl } from '@/lib/api';
 
 // --- MODIFIED: Changed to Numbers 0-9 ---
 const ASL_NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -71,7 +72,7 @@ export default function ASLNumberPractice() {
 
     try {
       // --- MODIFIED: Call the new /api/track-numbers/ endpoint ---
-      const response = await fetch('http://localhost:8000/api/track-numbers/', {
+      const response = await fetch(apiUrl('/api/track-numbers/'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

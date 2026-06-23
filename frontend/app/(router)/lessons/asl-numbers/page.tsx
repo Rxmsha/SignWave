@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { apiUrl } from '@/lib/api';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
@@ -201,7 +202,7 @@ export default function ASLNumbersPage() {
         const imageData = canvas.toDataURL('image/jpeg', 0.8);
 
         try {
-            const response = await fetch('http://localhost:8000/api/track-numbers/', {
+            const response = await fetch(apiUrl('/api/track-numbers/'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { apiUrl } from '@/lib/api';
 import Image from 'next/image';
 import { CheckCircle, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -226,7 +227,7 @@ export default function ASLAlphabetPage() {
         const imageData = canvas.toDataURL('image/jpeg', 0.8);
 
         try {
-            const response = await fetch('http://localhost:8000/api/test-siglip/', {
+            const response = await fetch(apiUrl('/api/test-siglip/'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

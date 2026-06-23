@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { apiUrl } from '@/lib/api';
 import {
     Dialog,
     DialogContent,
@@ -132,7 +133,7 @@ export default function ASLAlphabetGame() {
 
         try {
             // Use test-siglip endpoint for alphabet detection (same as competition game)
-            const response = await fetch('http://localhost:8000/api/test-siglip/', {
+            const response = await fetch(apiUrl('/api/test-siglip/'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

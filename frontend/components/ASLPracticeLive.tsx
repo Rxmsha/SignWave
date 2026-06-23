@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState, useCallback } from 'react';
+import { apiUrl } from '@/lib/api';
 
 const ASL_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L', 'V', 'Y'];
 const REQUIRED_HOLD_DURATION = 500; // 1/2 a second
@@ -66,7 +67,7 @@ export default function ASLPracticeLive() {
     const imageData = canvas.toDataURL('image/jpeg', 0.8);
 
     try {
-      const response = await fetch('http://localhost:8000/api/track-hands/', {
+      const response = await fetch(apiUrl('/api/track-hands/'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

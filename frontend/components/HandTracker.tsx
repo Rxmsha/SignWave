@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 
+import { apiUrl } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -74,7 +75,7 @@ export default function HandTracker() {
       setError(null);
 
       const response = await fetch(
-        'http://localhost:8000/api/track_hands/',
+        apiUrl('/api/track_hands/'),
         {
           method: 'POST',
           headers: {

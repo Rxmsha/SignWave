@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
+import { apiUrl } from '@/lib/api';
 
 // Dynamically import Plotly to avoid SSR issues
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
@@ -95,7 +96,7 @@ export function ASLVisualization({
       try {
         const typeParam = signType ? `?sign_type=${signType}` : '';
         const response = await fetch(
-          `http://localhost:8000/api/reference-sign/${signName}/${typeParam}`
+          apiUrl(`/api/reference-sign/${signName}/${typeParam}`)
         );
 
         if (!response.ok) {

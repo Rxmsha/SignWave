@@ -14,7 +14,9 @@
       "Bash(dir:*)",
       "PowerShell($f=\"C:\\\\Users\\\\rimsh\\\\Desktop\\\\SignWave\\\\frontend\"; \"next bin exists: \" + \\(Test-Path \"$f\\\\node_modules\\\\.bin\\\\next.cmd\"\\); \"package count: \" + \\(@\\(Get-ChildItem \"$f\\\\node_modules\" -ErrorAction SilentlyContinue\\).Count\\))",
       "Bash(find app/api -type f)",
-      "Bash(find app *)"
+      "Bash(find app *)",
+      "Bash(ls -lh api/pretrained/)",
+      "Bash(du -sh reference_signs)"
     ],
     "deny": [],
     "ask": []

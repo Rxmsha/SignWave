@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { apiUrl } from '@/lib/api';
 import {
     Dialog,
     DialogContent,
@@ -139,7 +140,7 @@ export default function ASLBasicsGame() {
             const userId = localStorage.getItem('userId') || 'default';
             const sessionId = `game-basics-${userId}`;
 
-            const response = await fetch('http://localhost:8000/api/track-video/', {
+            const response = await fetch(apiUrl('/api/track-video/'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

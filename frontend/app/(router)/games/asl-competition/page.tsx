@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { apiUrl } from '@/lib/api';
 import {
     Dialog,
     DialogContent,
@@ -355,11 +356,11 @@ export default function ASLCompetitionPage() {
 
             let endpoint = '';
             if (currentProblem.type === 'alphabet') {
-                endpoint = 'http://localhost:8000/api/test-siglip/';
+                endpoint = apiUrl('/api/test-siglip/');
             } else if (currentProblem.type === 'number') {
-                endpoint = 'http://localhost:8000/api/track-numbers/';
+                endpoint = apiUrl('/api/track-numbers/');
             } else if (currentProblem.type === 'word') {
-                endpoint = 'http://localhost:8000/api/track-video/';
+                endpoint = apiUrl('/api/track-video/');
             }
 
             if (!endpoint) return;
